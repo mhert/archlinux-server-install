@@ -97,6 +97,10 @@ PasswordAuthentication no
 KexAlgorithms curve25519-sha256@libssh.org
 Ciphers aes256-gcm@openssh.com
 MACs hmac-sha2-512-etm@openssh.com" >> /mnt/installation/etc/ssh/sshd_config
+
+/mnt/bin/arch-chroot /mnt/installation pacman-key --init
+/mnt/bin/arch-chroot /mnt/installation pacman-key --populate archlinux
+
 /mnt/bin/arch-chroot /mnt/installation locale-gen
 
 /mnt/bin/arch-chroot /mnt/installation sed -i "s/^HOOKS=.*/HOOKS=\"base udev autodetect modconf block encrypt lvm2 filesystems keyboard fsck\"/g" /etc/mkinitcpio.conf
