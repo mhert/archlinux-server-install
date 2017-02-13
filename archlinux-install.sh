@@ -1,17 +1,23 @@
 #!/usr/bin/env bash
 set -x
 
-if [ $# -ne 5 ]; then
-    echo "usage: "_$(basename $0)_" <ROOT_SIZE> <HOSTNAME> <USERNAME> <BOOTSTRAP_URL> <AUTHORIZED_KEYS>"
+if [ $# -eq 1 ]; then
+    curl -O $1
+    CONFIG_NAME=$(echo "$1" | rev | cut -d"/" -f1 | rev)
+    source $CONFIG_NAME
+elif [ $# -eq 6 ]; then
+    BOOTSTRAP_URL=$1
+    ROOT_SIZE=$2
+    IPV6=$3
+    USERNAME=$4
+    HOSTNAME=$5
+    AUTHORIZED_KEYS=$6
+else
+    echo "usage: "_$(basename $0)_" <BOOTSTRAP_URL> <ROOT_SIZE> <IPV6> <USERNAME> <HOSTNAME> <AUTHORIZED_KEYS>"
+    echo "or:  "_$(basename $0)_" <CONFIG_URL>"
     echo "You can find the bootstrap image here: https://www.archlinux.org/download/"
     exit
 fi
-
-ROOT_SIZE=$1
-HOSTNAME=$2
-USERNAME=$3
-BOOTSTRAP=$4
-AUTHORIZED_KEYS=$5
 
 BOOTSTRAP_NAME=$(echo "$BOOTSTRAP" | rev | cut -d"/" -f1 | rev)
 
@@ -84,7 +90,14 @@ echo "[Match]
 Name=ens3
 
 [Network]
-DHCP=yes" > /mnt/installation/etc/systemd/network/wired.network
+DHCP=ipv4
+
+[Address] 
+Address=$IPV6
+
+[Route]
+Gateway=fe80::1
+" > /mnt/installation/etc/systemd/network/wired.network
 
 echo "
 #custom config
