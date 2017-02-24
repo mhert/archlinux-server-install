@@ -14,6 +14,6 @@ cryptsetup luksOpen /dev/sda10 data
 mount /dev/mapper/data /data
 
 mkdir /data/ssl
-    mv $CONFIG_NAME cloud-config.yaml
+mv $CONFIG_NAME /data/cloud-config.yaml
 
 coreos-cloudinit --from-file=/data/cloud-config.yaml
