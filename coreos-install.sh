@@ -21,6 +21,7 @@ partprobe
 sgdisk /dev/sda --delete=9
 sgdisk /dev/sda --new=9::+10G --type=9:FFFF
 sgdisk /dev/sda --new=10:: --type=10:8300
+resize2fs /dev/sda9 10G
 
 partprobe
 
