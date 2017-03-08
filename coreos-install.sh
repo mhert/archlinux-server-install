@@ -27,7 +27,7 @@ mkfs.btrfs -f /dev/mapper/encrypted-data
 mkdir -p /mnt
 mount /dev/mapper/encrypted-system /mnt
 
-git clone $AFTERBOOT_GIT_URL /mnt/scripts
+git clone $AFTERBOOT_GIT_URL /root/scripts
 
 echo "$CLOUD_CONFIG_URL" > /mnt/cloud-config-url
 
