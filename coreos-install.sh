@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -x
 
-if [ $# -eq 1 ]; then
+if [ $# -eq 2 ]; then
     CLOUD_CONFIG_URL=$1
-    AFTERBNOOT_GIT_URL=$2
+    AFTERBOOT_GIT_URL=$2
 else
     echo "usage: "_$(basename $0)_" <CLOUD_CONFIG_URL> <SERVER_INSTALL_GIT_URL>"
     exit
@@ -27,7 +27,7 @@ mkfs.btrfs -f /dev/mapper/encrypted-system
 mkdir /mnt
 mount /dev/mapper/encrypted-system /mnt
 
-git clone $AFTERBNOOT_GIT_URL /mnt/scripts
+git clone $AFTERBOOT_GIT_URL /mnt/scripts
 
 echo "$CLOUD_CONFIG_URL" > /mnt/cloud-config-url
 
