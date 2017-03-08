@@ -9,9 +9,8 @@ else
     exit
 fi
 
-curl -O cloud-config.yaml $CLOUD_CONFIG_URL
+curl -o cloud-config.yaml $CLOUD_CONFIG_URL
 
-chmod +x coreos-install
 bash <(curl -s https://raw.githubusercontent.com/coreos/init/master/bin/coreos-install) -d /dev/sda -C stable -c cloud-config.yaml
 
 sgdisk /dev/sda --delete=9

@@ -7,7 +7,7 @@ mount /dev/mapper/data /data
 
 CLOUD_CONFIG_URL=$(cat /data/cloud-config-url)
 
-curl -O /data/cloud-config.yaml $CLOUD_CONFIG_URL
+curl -o /data/cloud-config.yaml $CLOUD_CONFIG_URL
 coreos-cloudinit --from-file=/data/cloud-config.yaml
 
 systemctl daemon-reload
