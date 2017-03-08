@@ -21,10 +21,10 @@ resize2fs /dev/sda9 10G
 partprobe
 
 cryptsetup luksFormat -c aes-xts-plain64 -s 512 -h sha512 -i 10000 --use-random /dev/sda10
-cryptsetup luksOpen /dev/sda10 encrypted-system
-mkfs.btrfs -f /dev/mapper/encrypted-system
+cryptsetup luksOpen /dev/sda10 encrypted-data
+mkfs.btrfs -f /dev/mapper/encrypted-data
 
-mkdir /mnt
+mkdir -p /mnt
 mount /dev/mapper/encrypted-system /mnt
 
 git clone $AFTERBOOT_GIT_URL /mnt/scripts
