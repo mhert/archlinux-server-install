@@ -33,7 +33,7 @@ mkdir /mnt/ssl
 umount /mnt
 cryptsetup luksClose /dev/mapper/data
 
-mount /sda9 /mnt
+mount /dev/sda9 /mnt
 resize2fs /dev/sda9 10G
 
 git clone "$AFTERBOOT_GIT_URL" /mnt/root/scripts
