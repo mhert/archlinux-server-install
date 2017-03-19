@@ -26,7 +26,7 @@ mkfs.btrfs -f /dev/mapper/data
 mkdir -p /mnt
 mount /dev/mapper/data /mnt
 
-echo "$CLOUD_CONFIG_URL" > /mnt/cloud-config-url.yaml
+echo "$CLOUD_CONFIG_URL" > /mnt/cloud-config-url
 
 mkdir /mnt/ssl
 
